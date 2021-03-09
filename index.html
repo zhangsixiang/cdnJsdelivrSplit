@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特色图片地址链接拼合</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-link type="info">cdn.jsdelivr.com 地址链接拼合</el-link>
+        <div class="box">
+            <div class="column">
+                <div class="demo-input-suffix">
+                    <div>您的GitHub名字：</div>
+                    <el-input v-model="userName" clearable>
+                    </el-input>
+                </div>
+                <div class="demo-input-suffix">
+                    <div>您的仓库名字：</div>
+                    <el-input v-model="repoName" clearable>
+                    </el-input>
+                </div>
+            </div>
+            <div class="column">
+                <div class="demo-input-suffix">
+                    <div>您的release版本：</div>
+                    <el-input v-model="version" clearable>
+                    </el-input>
+                </div>
+                <div class="demo-input-suffix">
+                    <div>您的文件夹：</div>
+                    <el-input v-model="fileName" clearable>
+                    </el-input>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <el-input placeholder="请输入图片名称" v-model="input" class="input-with-select" clearable>
+                <template slot="prepend">{{ text }}</template>
+                <el-button slot="append" icon="el-icon-circle-plus" @click="piecen">拼合地址</el-button>
+            </el-input>
+        </div>
+        <div style="margin-top: 15px;">
+            <el-input placeholder="拼合后的地址，在此显示" v-model="input1" id="input" clearable>
+                <el-button slot="append" @click="copy" icon="el-icon-document-copy">一键复制</template>
+            </el-input>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+html,
+body {
+    background: #e5e9ef;
+}
+
+#app {
+    width: 70%;
+    margin: 5% auto;
+}
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    color: #909399;
+}
+.column {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.column .demo-input-suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.demo-input-suffix .el-input {
+    width: 330px;
+}
+
+.el-link {
+    text-align: center;
+    display: flex;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
