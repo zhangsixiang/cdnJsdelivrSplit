@@ -5,7 +5,7 @@ body {
 
 #app {
     width: 70%;
-    margin: 5% auto;
+    margin: 1% auto;
 }
 .box {
     display: flex;
@@ -34,5 +34,4 @@ body {
     text-align: center;
     display: flex;
     font-size: 30px;
-    margin-bottom: 50px;
 }

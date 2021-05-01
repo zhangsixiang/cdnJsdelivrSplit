@@ -13,6 +13,10 @@
 <body>
     <div id="app">
         <el-link type="info">cdn.jsdelivr.com 地址链接拼合</el-link>
+        <div style="width: 70%;margin: 0 auto;" v-if="src.length > 0">
+            <el-image style="width: 500px; height: auto;margin: 5px auto;display: block;" :src="src" fit="fill">
+            </el-image>
+        </div>
         <div class="box">
             <div class="column">
                 <div class="demo-input-suffix">
@@ -40,16 +44,18 @@
             </div>
         </div>
         <div style="margin-top: 15px;">
-            <el-input placeholder="请输入图片名称" v-model="input" class="input-with-select" clearable>
+            <el-input placeholder="请输入图片名称" v-model="ImgName" class="input-with-select" clearable>
                 <template slot="prepend">{{ text }}</template>
                 <el-button slot="append" icon="el-icon-circle-plus" @click="piecen">拼合地址</el-button>
             </el-input>
         </div>
         <div style="margin-top: 15px;">
-            <el-input placeholder="拼合后的地址，在此显示" v-model="input1" id="input" clearable>
-                <el-button slot="append" @click="copy" icon="el-icon-document-copy">一键复制</template>
+            <el-input placeholder="拼合后的地址，在此显示" v-model="copyText" id="copyText" clearable>
+                <el-button slot="append" @click="copy" icon="el-icon-document-copy">一键复制</el-button>
             </el-input>
         </div>
+
+
     </div>
     <script src="js/vue.js"></script>
     <script src="js/index.js"></script>
