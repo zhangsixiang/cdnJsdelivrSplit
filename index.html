@@ -12,48 +12,72 @@
 
 <body>
     <div id="app">
-        <el-link type="info">cdn.jsdelivr.com 地址链接拼合</el-link>
-        <div style="width: 70%;margin: 0 auto;" v-if="src.length > 0">
-            <el-image style="width: 500px; height: auto;margin: 5px auto;display: block;" :src="src" fit="fill">
-            </el-image>
-        </div>
-        <div class="box">
-            <div class="column">
-                <div class="demo-input-suffix">
-                    <div>您的GitHub名字：</div>
-                    <el-input v-model="userName" clearable>
+        <el-tabs type="border-card" style="margin-top: 100px;">
+            <el-tab-pane label="jsdelivr 图片链接拼合">
+                <div style="width: 70%;margin: 0 auto;" v-if="src.length > 0">
+                    <el-image style="width: 500px; height: auto;margin: 5px auto;display: block;" :src="src"
+                        :preview-src-list="[src]" :fit="'cover'">
+                    </el-image>
+                </div>
+                <div class="box">
+                    <div class="column">
+                        <div class="demo-input-suffix">
+                            <div>您的GitHub名字：</div>
+                            <el-input v-model="userName" clearable>
+                            </el-input>
+                        </div>
+                        <div class="demo-input-suffix">
+                            <div>您的仓库名字：</div>
+                            <el-input v-model="repoName" clearable>
+                            </el-input>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="demo-input-suffix">
+                            <div>您的release版本：</div>
+                            <el-input v-model="version" clearable>
+                            </el-input>
+                        </div>
+                        <div class="demo-input-suffix">
+                            <div>您的文件夹：</div>
+                            <el-input v-model="fileName" clearable>
+                            </el-input>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="请输入图片名称" v-model="ImgName" class="input-with-select" clearable>
+                        <template slot="prepend">{{ text }}</template>
+                        <el-button slot="append" icon="el-icon-circle-plus" @click="piecen">拼合地址</el-button>
                     </el-input>
                 </div>
-                <div class="demo-input-suffix">
-                    <div>您的仓库名字：</div>
-                    <el-input v-model="repoName" clearable>
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="拼合后的地址，在此显示" v-model="copyText" id="copyText" clearable>
+                        <el-button slot="append" @click="copy" icon="el-icon-document-copy">一键复制</el-button>
                     </el-input>
                 </div>
-            </div>
-            <div class="column">
-                <div class="demo-input-suffix">
-                    <div>您的release版本：</div>
-                    <el-input v-model="version" clearable>
+            </el-tab-pane>
+            <el-tab-pane label="文件下载链接拼合">
+
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="请输入您的资源链接" v-model="linkName" class="input-with-select">
+                        <el-select v-model="panName" slot="prepend" placeholder="请选择您的网盘名称">
+                            <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                :value="item.value"></el-option>
+                        </el-select>
+                        <el-button slot="append" icon="el-icon-circle-plus" @click="piecenLink">拼合地址</el-button>
                     </el-input>
                 </div>
-                <div class="demo-input-suffix">
-                    <div>您的文件夹：</div>
-                    <el-input v-model="fileName" clearable>
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="拼合后的地址，在此显示" v-model="copyLink" id="copyLink" clearable>
+                        <el-button slot="append" @click="copyLinkF" icon="el-icon-document-copy">一键复制</el-button>
                     </el-input>
                 </div>
-            </div>
-        </div>
-        <div style="margin-top: 15px;">
-            <el-input placeholder="请输入图片名称" v-model="ImgName" class="input-with-select" clearable>
-                <template slot="prepend">{{ text }}</template>
-                <el-button slot="append" icon="el-icon-circle-plus" @click="piecen">拼合地址</el-button>
-            </el-input>
-        </div>
-        <div style="margin-top: 15px;">
-            <el-input placeholder="拼合后的地址，在此显示" v-model="copyText" id="copyText" clearable>
-                <el-button slot="append" @click="copy" icon="el-icon-document-copy">一键复制</el-button>
-            </el-input>
-        </div>
+            </el-tab-pane>
+        </el-tabs>
+
+
+
 
 
     </div>

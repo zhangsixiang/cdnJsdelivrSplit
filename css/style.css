@@ -7,17 +7,20 @@ body {
     width: 70%;
     margin: 1% auto;
 }
+
 .box {
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
     color: #909399;
 }
+
 .column {
     flex-basis: 100%;
     display: flex;
     justify-content: space-between;
 }
+
 .column .demo-input-suffix {
     display: flex;
     align-items: center;
@@ -34,4 +37,12 @@ body {
     text-align: center;
     display: flex;
     font-size: 30px;
+}
+
+.el-select .el-input {
+    width: 130px;
+}
+
+.input-with-select .el-input-group__prepend {
+    background-color: #fff;
 }
