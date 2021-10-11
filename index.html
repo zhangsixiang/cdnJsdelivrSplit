@@ -28,8 +28,12 @@
                         </div>
                         <div class="demo-input-suffix">
                             <div>您的仓库名字：</div>
-                            <el-input v-model="repoName" clearable>
-                            </el-input>
+
+                            <el-autocomplete class="inline-input" v-model="repoName" :fetch-suggestions="querySearch"
+                                placeholder="请输入/选择你的仓库名字" @select="handleSelect" clearable></el-autocomplete>
+
+                            <!-- <el-input v-model="repoName" clearable>
+                            </el-input> -->
                         </div>
                     </div>
                     <div class="column">

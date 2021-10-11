@@ -3,6 +3,7 @@ new Vue({
     data: function () {
         return {
             ImgName: null,  // 图片名称
+            restaurants: [],// 带输入建议
             copyText: null, // 复制的文本
             userName: 'zhangsixiang', // 您的GitHub名字
             repoName: 'tqlFile', // 您的仓库名字
@@ -33,10 +34,10 @@ new Vue({
         ImgName: function (newQuestion, oldQuestion) {
             this.piecen()
         },
-        panName: function(newQuestion, oldQuestion){
+        panName: function (newQuestion, oldQuestion) {
             this.piecenLink()
         },
-        linkName: function(newQuestion, oldQuestion){
+        linkName: function (newQuestion, oldQuestion) {
             this.piecenLink()
         },
     },
@@ -46,7 +47,34 @@ new Vue({
     updated() {
         this.text = `https://cdn.jsdelivr.net/gh/${this.userName}/${this.repoName}@${this.version}/${this.fileName}/`
     },
+    mounted() {
+        this.restaurants = this.loadAll();
+    },
     methods: {
+        // 您的仓库名字——带输入建议 start
+        querySearch(queryString, cb) {
+            var restaurants = this.restaurants;
+            var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+            // 调用 callback 返回建议列表的数据
+            // cb(results);
+            cb(restaurants);
+        },
+        createFilter(queryString) {
+            return (restaurant) => {
+                return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+            };
+        },
+        handleSelect(item) {
+            console.log(item);
+        },
+        loadAll() {
+            return [
+                { "value": "tqlFile" },
+                { "value": "tqlimg" },
+                { "value": "imwmi" }
+            ];
+        },
+        // 您的仓库名字——带输入建议 end
         piecen() {
             if (this.ImgName) {
                 this.copyText = null
@@ -102,4 +130,5 @@ new Vue({
 
         }
     }
+
 })
