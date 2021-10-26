@@ -15,18 +15,22 @@ new Vue({
                 value: '蓝奏云',
                 label: '蓝奏云'
             }, {
-                value: 'GitHub',
-                label: 'GitHub'
+                value: '123云盘',
+                label: '123云盘'
             }, {
                 value: '百度网盘',
                 label: '百度网盘'
+            }, {
+                value: 'GitHub',
+                label: 'GitHub'
             }, {
                 value: '磁力链接',
                 label: '磁力链接'
             }],
             panName: '蓝奏云', // 您的网盘名称
             linkName: null, // 您的资源链接 
-            copyLink: null // 复制的文本
+            copyLink: null, // 复制的文本
+            tiQuMa: "" // 提取码
         }
     },
     watch: {
@@ -38,6 +42,15 @@ new Vue({
             this.piecenLink()
         },
         linkName: function (newQuestion, oldQuestion) {
+            // 截取123云盘链接，直接赋值链接URL
+            if (newQuestion.indexOf("链接:") != -1) {
+                this.linkName = newQuestion.slice(3)
+            }else if(newQuestion.indexOf("百度网盘") != -1 ){ 
+                // 截取百度网盘链接，直接赋值链接URL 提取码
+                console.log("触发");
+                this.linkName = newQuestion.slice(1,newQuestion.indexOf(" 提"))
+                this.tiQuMa = '提取码: ' + newQuestion.slice(newQuestion.indexOf(": ")+1,newQuestion.indexOf(" 复"))
+            }
             this.piecenLink()
         },
     },
@@ -86,7 +99,7 @@ new Vue({
         piecenLink() {
             if (this.linkName) {
                 this.copyLink = null
-                this.copyLink = `<p class="has-text-align-center">${this.panName}：<a href="${this.linkName}" target="_blank" rel="noreferrer noopener">${this.linkName}</a></p>`
+                this.copyLink = `<p class="has-text-align-center">${this.panName}：<a href="${this.linkName}" target="_blank" rel="noreferrer noopener">${this.linkName}</a> ${this.tiQuMa}</p>`
             } else {
                 this.copyLink = '无'
             }
