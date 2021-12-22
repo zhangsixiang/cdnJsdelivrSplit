@@ -60,6 +60,20 @@
                         <el-button slot="append" @click="copy" icon="el-icon-document-copy">一键复制</el-button>
                     </el-input>
                 </div>
+
+                <!-- https://oss.tqlcool.com/resources/tqlFile/webp/101111wn4hhk5krahr9zhq.webp -->
+
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="请输入图片名称" v-model="ImgName1" class="input-with-select" clearable>
+                        <template slot="prepend">{{ ossText }}</template>
+                        <el-button slot="append" icon="el-icon-circle-plus" @click="piecen">拼合地址</el-button>
+                    </el-input>
+                </div>  
+                <div style="margin-top: 15px;">
+                    <el-input placeholder="拼合后的地址，在此显示" v-model="copyText1" id="copyText1" clearable>
+                        <el-button slot="append" @click="copy1" icon="el-icon-document-copy">一键复制</el-button>
+                    </el-input>
+                </div>
             </el-tab-pane>
             <el-tab-pane label="文件下载链接拼合">
                 <div style="margin-top: 15px;">

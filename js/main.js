@@ -3,8 +3,10 @@ new Vue({
     data: function () {
         return {
             ImgName: null,  // 图片名称
+            ImgName1: null,  // 图片名称
             restaurants: [],// 带输入建议
             copyText: null, // 复制的文本
+            copyText1: null, // 复制的文本
             userName: 'zhangsixiang', // 您的GitHub名字
             repoName: 'tqlFile', // 您的仓库名字
             version: "master", // 您的release版本
@@ -38,6 +40,9 @@ new Vue({
         ImgName: function (newQuestion, oldQuestion) {
             this.piecen()
         },
+        ImgName1: function (newQuestion, oldQuestion) {
+            this.piecen1()
+        },
         panName: function (newQuestion, oldQuestion) {
             this.piecenLink()
         },
@@ -56,9 +61,13 @@ new Vue({
     },
     created() {
         this.text = `https://cdn.jsdelivr.net/gh/${this.userName}/${this.repoName}@${this.version}/${this.fileName}/`
+
+        this.ossText = `https://oss.tqlcool.com/resources/tqlFile/${this.fileName}/`
     },
     updated() {
         this.text = `https://cdn.jsdelivr.net/gh/${this.userName}/${this.repoName}@${this.version}/${this.fileName}/`
+
+        this.ossText = `https://oss.tqlcool.com/resources/tqlFile/${this.fileName}/`
     },
     mounted() {
         this.restaurants = this.loadAll();
@@ -96,6 +105,14 @@ new Vue({
                 this.copyText = '无'
             }
         },
+        piecen1() {
+            if (this.ImgName1) {
+                this.copyText1 = null
+                this.copyText1 = this.ossText + this.ImgName1
+            } else {
+                this.copyText1 = '无'
+            }
+        },
         piecenLink() {
             if (this.linkName) {
                 this.copyLink = null
@@ -115,6 +132,26 @@ new Vue({
                     type: 'success'
                 });
                 this.src = this.copyText
+            } else {
+                this.$notify.error({
+                    title: '错误',
+                    message: '请输入图片名称'
+                });
+            }
+
+        },
+        copy1() {
+            var ImgName = document.getElementById("copyText1");
+            ImgName.select(); // 选中文本
+            var obj = document.execCommand("copy");
+            if (this.ImgName1) {
+                this.$notify({
+                    title: '成功',
+                    message: '复制成功',
+                    type: 'success'
+                });
+                this.src = this.copyText1
+                console.log("555",this.src,this.copyText1);
             } else {
                 this.$notify.error({
                     title: '错误',
